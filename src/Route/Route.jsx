@@ -12,6 +12,9 @@ import AllUsers from "../Dashboard/AllUsers";
 import ManageBookings from "../Dashboard/ManageBookings";
 import MyCart from "../Dashboard/MyCart";
 import PaymentHistory from "../Dashboard/PaymentHistory";
+import PrivateRoute from "./PrivateRoute";
+import AllItems from "../pages/AllItems/AllItems";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
   {
@@ -25,40 +28,44 @@ export const router = createBrowserRouter([
       {
         path: '/about',
         element: <About />
+      },
+      {
+        path: '/allItems',
+        element: <AllItems></AllItems>
       }
     ]
   },
   {
     path: 'dashboard',
-    element: <Dashboard />,
+    element: <PrivateRoute><Dashboard /></PrivateRoute>,
     children: [
       {
         path: 'statistics',
-        element: <Statistics />
+        element: <PrivateRoute><Statistics /></PrivateRoute>
       },
       {
         path: 'addItem',
-        element: <AddItem />
+        element: <AdminRoute><AddItem /></AdminRoute>
       },
       {
         path: 'manageItems',
-        element: <ManageItems />
+        element: <AdminRoute><ManageItems /></AdminRoute>
       },
       {
         path: 'allUsers',
-        element: <AllUsers />
+        element: <AdminRoute><AllUsers /></AdminRoute>
       },
       {
         path: 'manageBookings',
-        element: <ManageBookings />
+        element: <PrivateRoute><ManageBookings /></PrivateRoute>
       },
       {
         path: 'myCart',
-        element: <MyCart />
+        element: <PrivateRoute><MyCart /></PrivateRoute>
       },
       {
-        path : 'paymentHistory',
-        element : <PaymentHistory/>
+        path: 'paymentHistory',
+        element: <PrivateRoute><PaymentHistory /></PrivateRoute>
       }
     ]
   }

@@ -1,11 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import Swal from 'sweetalert2'
+import useAxiosPublic from "../hooks/useAxiosPublic";
+import toast from 'react-hot-toast'
+import useCart from "../hooks/useCart";
 
 
 const Card = ({ food }) => {
-    const { name, image, price } = food;
+    const { name, image, price, category } = food;
     const { user } = useAuth()
+    const [, , refetch] = useCart();
+    const axiosPublic = useAxiosPublic();
     const navigate = useNavigate();
 
     const handleConfirm = () => {
@@ -24,20 +29,40 @@ const Card = ({ food }) => {
                     navigate('/login')
                 }
             });
-        }else{
-            console.log('clicked');
+        } else {
+            const cartItem = {
+                name,
+                image,
+                price,
+                category,
+                author: {
+                    name: user?.displayName,
+                    email: user?.email,
+                    photo: user?.photoURL,
+                }
+            }
+
+          axiosPublic.post('/cart', cartItem)
+          .then(res =>{
+            if(res.data.insertedId){
+                toast.success('Add to cart!')
+                refetch();                
+            }
+          })
+            
         }
-        
+
 
     }
     return (
         <div className="space-y-2 border bg-gray-50 rounded-xl min-h-[320px] flex flex-col">
             <div className="flex-grow">
                 <div className="flex items-center justify-center">
-                    <img src={image} alt="" className="w-full max-h-44 object-cover rounded-t-xl" />
+                    <img src={image} alt="" className="w-full h-48 max-h-44 object-cover rounded-t-xl" />
                 </div>
                 <div className="px-2 pt-4">
-                    <h3 className="text-xl font-semibold">{name}</h3>
+                    <h3 className="text-xl font-semibold">{
+                        name.length > 18 ? `${name.slice(0, 18)}...` : name}</h3>
                     <h2 className="text-[#fb320f] text-lg">$ {price}</h2>
                 </div>
             </div>

@@ -16,8 +16,28 @@
     font-weight: 600;
     background:#fb320f;
     color: white;
-    border-radius:20px 20px 0 20px;
+    cursor: pointer;
+    display: inline-block;
 }
 .btn:hover{
     background:#e53e21;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+   color: #fb320f !important;
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+   color: #fb320f !important
+}
+
+.swiper-pagination-bullet {
+   background-color: #fb320f !important;
+}
+
+
+.swiper-pagination-bullet-active {
+   background-color: #fb320f !important;
 }

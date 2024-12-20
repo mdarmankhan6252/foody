@@ -4,18 +4,16 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Pagination, Navigation } from 'swiper/modules';
 import Card from '../../components/Card';
-import { useEffect, useState } from 'react';
+import useFood from '../../hooks/useFood';
 
 const FoodCategory = ({ category }) => {
 
-    const [foods, setFoods] = useState([]);
-    useEffect(() => {
-        fetch('foods.json')
-            .then(res => res.json())
-            .then(data => setFoods(data))
-    }, [])
+    
 
-    console.log(foods);
+    const [foods, isLoading] = useFood();
+    if(isLoading){
+        return <p>...</p>
+    }
 
     return (
         <div className='py-10'>
@@ -29,6 +27,13 @@ const FoodCategory = ({ category }) => {
                 navigation={true}
                 modules={[Pagination, Navigation]}
                 className="mySwiper"
+                breakpoints={{
+                    320: { slidesPerView: 1 },   // Extra small devices
+                    480: { slidesPerView: 2 },   // Small devices
+                    768: { slidesPerView: 3 },   // Medium devices
+                    1024: { slidesPerView: 4 },  // Large devices
+                    1280: { slidesPerView: 5 },  // Extra large devices
+                }}
             >
 
                 {

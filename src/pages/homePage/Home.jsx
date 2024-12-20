@@ -1,6 +1,8 @@
 import Title from "../../Shared/Title";
 import Banner from "./Banner";
 import FoodCategory from '../../pages/homePage/FoodCategory';
+import Sub_banner from "./Sub_banner";
+import Review from "./Review";
 
 const Home = () => {
     return (
@@ -11,9 +13,11 @@ const Home = () => {
             <Title title="Pizza" />
             <FoodCategory category="pizza"/>
             <Title title="Dessert" />
-            <FoodCategory category="dessert"/>
+            <FoodCategory category="desert"/>
             <Title title="Salad" />
             <FoodCategory category="salad"/>
+            <Sub_banner/>
+            <Review/>
         </div>
     );
 };
