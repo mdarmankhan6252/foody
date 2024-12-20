@@ -13,3 +13,11 @@
 
 ### ADMIN - PAGE
 ![alt text](https://iili.io/2NT1YCb.png)
+
+### REGISTER - PAGE
+![alt text](https://iili.io/2NTeXt4.png)
+
+### LOGIN - PAGE
+![alt text](https://iili.io/2NTeVAG.png)
+
+# Thanks💖✔
